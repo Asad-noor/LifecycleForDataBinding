@@ -1,22 +1,21 @@
 package com.example.lifecyclefordatabinding
 
+import android.app.Application
 import android.util.Log
 import androidx.databinding.ObservableInt
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.lifecyclefordatabinding.util.isNotTypedYet
 
 
-class MainActivityViewModel: ViewModel() {
+class MainActivityViewModel(application: Application) : AndroidViewModel(application) {
     val visibleFirstName = MutableLiveData<Boolean>().apply { value = false }
     val firstName = MutableLiveData<String>()
 
     val visibleSpinner = MutableLiveData<Boolean>().apply { value = false }
     val selectedDay = MutableLiveData<Int>()
-
-    //val daysArray = ObservableInt(R.array.days)
-    //val daysString = MutableLiveData<Array<String>>()
 
     fun onNext() {
         var isAllValid = true
@@ -39,7 +38,8 @@ class MainActivityViewModel: ViewModel() {
         }.also { it.observeForever{} }
 
         if(isAllValid) {
-            Log.d("tttt", ">> values >" +firstName.value.toString() + " >>")
+            val strArray = getApplication<Application>().resources.getStringArray(R.array.days)
+            Log.d("tttt", ">> values >" +firstName.value.toString() + " >>"+strArray[selectedDay.value!!])
         }
     }
 }
