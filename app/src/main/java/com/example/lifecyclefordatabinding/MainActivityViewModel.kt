@@ -1,30 +1,45 @@
 package com.example.lifecyclefordatabinding
 
+import android.util.Log
+import androidx.databinding.ObservableInt
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.lifecyclefordatabinding.util.isNotTypedYet
+
 
 class MainActivityViewModel: ViewModel() {
     val visibleFirstName = MutableLiveData<Boolean>().apply { value = false }
     val firstName = MutableLiveData<String>()
 
     val visibleSpinner = MutableLiveData<Boolean>().apply { value = false }
-    val spinner = MutableLiveData<String>()
+    val selectedDay = MutableLiveData<Int>()
+
+    //val daysArray = ObservableInt(R.array.days)
+    //val daysString = MutableLiveData<Array<String>>()
 
     fun onNext() {
+        var isAllValid = true
         visibleFirstName.value = firstName.value.toString().isNotTypedYet()
 
         MediatorLiveData<String>().apply {
             val first: (String?) -> Unit = first@{
                 visibleFirstName.value = firstName.value.toString().isNotTypedYet()
+                isAllValid = !visibleFirstName.value!!
             }
+            val spinner: (Int?) -> Unit = spinner@{
+                visibleSpinner.value = selectedDay.value == 0
+                isAllValid = !visibleSpinner.value!!
+            }
+
+
             addSource(firstName, first)
+            addSource(selectedDay, spinner)
 
         }.also { it.observeForever{} }
-    }
 
-    fun onNextSpinner() {
-        
+        if(isAllValid) {
+            Log.d("tttt", ">> values >" +firstName.value.toString() + " >>")
+        }
     }
 }

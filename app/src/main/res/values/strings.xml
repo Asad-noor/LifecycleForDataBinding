@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">LifecycleForDataBinding</string>
+
+    <array name="days">
+        <item name="Select">Select</item>
+        <item name="Mon">Monday</item>
+        <item name="Tue">Tuesday</item>
+        <item name="Wed">Wednesday</item>
+    </array>
 </resources>

@@ -40,45 +40,37 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_error_msg" />
 
-        <Button
-            android:id="@+id/btn_test"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{_ -> viewModel.onNext()}"
-            android:text="Test"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtTest" />
-
         <TextView
             android:id="@+id/txt_error_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:text="Spinner field is blank or invalid data!"
             android:textColor="@android:color/holo_red_light"
-            android:visibility="@{safeUnbox(viewModel.visibleFirstName) ? View.VISIBLE : View.INVISIBLE}"
+            android:visibility="@{safeUnbox(viewModel.visibleSpinner) ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_test"/>
+            app:layout_constraintTop_toBottomOf="@+id/edtTest"/>
 
-        <androidx.appcompat.widget.AppCompatSpinner
+        <Spinner
             android:id="@+id/spn_test"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
-            android:padding="20dp"
+            android:padding="10dp"
+            android:entries="@array/days"
+            android:selectedItemPosition="@={viewModel.selectedDay}"
             app:layout_constraintTop_toBottomOf="@+id/txt_error_spinner" />
 
         <Button
-            android:id="@+id/btn_test_spinner"
+            android:id="@+id/btn_test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:onClick="@{_ -> viewModel.onNextSpinner()}"
-            android:text="Test Spinner"
+            android:layout_marginTop="15dp"
+            android:onClick="@{_ -> viewModel.onNext()}"
+            android:text="Test"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spn_test" />
