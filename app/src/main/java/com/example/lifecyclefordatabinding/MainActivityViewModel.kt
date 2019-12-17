@@ -2,11 +2,9 @@ package com.example.lifecyclefordatabinding
 
 import android.app.Application
 import android.util.Log
-import androidx.databinding.ObservableInt
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.lifecyclefordatabinding.util.isNotTypedYet
 
 
