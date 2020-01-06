@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.example.lifecyclefordatabinding.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,5 +18,13 @@ class MainActivity : AppCompatActivity() {
             it.setLifecycleOwner(this)
             it.viewModel = viewModel
         }
+
+        btn_test.setOnClickListener {
+            addTestFragment()
+        }
+    }
+
+    private fun addTestFragment() {
+        
     }
 }
