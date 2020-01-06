@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.example.lifecyclefordatabinding.databinding.ActivityMainBinding
+import com.example.lifecyclefordatabinding.util.inTransaction
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -25,6 +26,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addTestFragment() {
-        
+        supportFragmentManager.inTransaction({
+            add(R.id.fragment_container, TestFragment(), "testFragment")
+        }, isAddToBack = false)
     }
 }
